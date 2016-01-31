@@ -1,0 +1,55 @@
+/* ==========================================================================
+   Layout
+   ========================================================================== */
+$susy: (
+	global-box-sizing: border-box,
+	columns: 12,
+	gutters: 1/2,
+	math: fluid,
+	output: float,
+	debug: (
+		image: hide,
+		color: rgba(#66f, .25),
+		output: background,
+		toggle: top right,
+	),
+	gutter-position: after,
+    rem: true,
+);
+
+// on inclut les propriétés border-box
+@include border-box-sizing;
+
+#page {
+	@include container (1120px);
+}
+
+.page-inner,
+.site-content {
+  @include span(12);
+}
+
+	.main
+
+.content-area {
+  @include span(8);
+}
+
+.widget-area {
+  @include span(4 last); 
+}
+
+/*--------------------------------------------------------------
+## Posts and pages
+--------------------------------------------------------------*/
+@import "primary/posts-and-pages";
+
+/*--------------------------------------------------------------
+## Asides
+--------------------------------------------------------------*/
+@import "primary/asides";
+
+/*--------------------------------------------------------------
+## Comments
+--------------------------------------------------------------*/
+@import "primary/comments";

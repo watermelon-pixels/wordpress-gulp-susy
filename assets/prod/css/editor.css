@@ -1,0 +1,46 @@
+/*
+ =======================================================================================================================
+ TinyMCE Styles
+
+ Styles in this file are compiled to assets/css/editor.css and are automatically loaded into your WordPress admin's
+ TinyMCE editor. You will generally want to use these styles in combination with customizations to \NV\Hooks\Editor.php,
+ which allows you to easily add new style presets to the TinyMCE editor.
+ =======================================================================================================================
+*/
+/* @import "settings";
+@import "mixins"; */
+/*Susy*/
+body, html {
+  height: auto !important; }
+
+html {
+  padding: 9px 10px !important; }
+
+.row, .columns, section {
+  border: 1px dashed silver;
+  position: relative;
+  padding: 1.25rem 0.5rem 0.5rem 0.5rem; }
+  .row:before, .columns:before, section:before {
+    content: '';
+    display: block;
+    position: absolute;
+    font-size: 0.75rem;
+    top: -0.55rem;
+    left: 1rem;
+    padding: 0 0.5rem;
+    background: white;
+    font-family: monospace; }
+
+.row:before {
+  content: 'row'; }
+
+.columns {
+  padding: 1rem 0.5rem 0.5rem 0.5rem; }
+  .columns:before {
+    content: 'column'; }
+
+section {
+  border-color: #afc6ff;
+  margin-bottom: 1rem; }
+  section:before {
+    content: 'section'; }
