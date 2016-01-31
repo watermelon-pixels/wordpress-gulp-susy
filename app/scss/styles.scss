@@ -1,0 +1,20 @@
+@import "bower_components/susy/sass/susy";
+
+.testing {
+  width: percentage(5/7);
+}
+
+// settings
+// --------
+$total-columns  : 7;
+$column-width   : 4em;
+$gutter-width   : 1em;
+$grid-padding   : $gutter-width;
+
+
+// mobile layout
+// -------------
+.page { @include container; }
+.contentinfo { @include bleed($grid-padding); }
+
+
