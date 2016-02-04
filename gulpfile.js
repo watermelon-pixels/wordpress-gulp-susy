@@ -1,103 +1,92 @@
+'use strict';
+// Load plugins
 var gulp = require('gulp');
+// 	plugins = require('gulp-load-plugins')({ camelize: true }),
+// 	lr = require('tiny-lr'),
+// 	server = lr();
+
+// // Styles
+// gulp.task('styles', function() {
+//   return gulp.src('assets/styles/*.scss')
+// 	.pipe(plugins.rubySass({ style: 'expanded', sourcemap: true }))
+// 	.pipe(plugins.autoprefixer('last 2 versions', 'ie 9', 'ios 6', 'android 4'))
+// 	.pipe(gulp.dest('assets/styles/build'))
+// 	.pipe(plugins.minifyCss({ keepSpecialComments: 1 }))
+// 	.pipe(plugins.livereload(server))
+// 	.pipe(gulp.dest('./'))
+// 	.pipe(plugins.notify({ message: 'Styles task complete' }));
+// });
+
 var sass = require('gulp-sass');
-var autoprefixer = require('gulp-autoprefixer');
-var sourcemaps = require('gulp-sourcemaps');
-var browserSync = require('browser-sync');
-var useref = require('gulp-useref');
-var uglify = require('gulp-uglify');
-var gulpIf = require('gulp-if');
-var cssnano = require('gulp-cssnano');
-var imagemin = require('gulp-imagemin');
-var cache = require('gulp-cache');
-var del = require('del');
-var runSequence = require('run-sequence');
 
-// Basic Gulp task syntax
-gulp.task('hello', function() {
-  console.log('Hello Zell!');
-})
-
-// Development Tasks 
-// -----------------
-
-// Start browserSync server
-gulp.task('browserSync', function() {
-  browserSync({
-    server: {
-      baseDir: 'app'
-    }
-  })
-})
-
-gulp.task('sass', function() {
-  return gulp.src('app/scss/**/*.scss') // Gets all files ending with .scss in app/scss and children dirs
-    .pipe(sass()) // Passes it through a gulp-sass
-    .pipe(gulp.dest('app/css')) // Outputs it in the css folder
-    .pipe(browserSync.reload({ // Reloading with Browser Sync
-      stream: true
-    }));
-})
-
-// Watchers
-gulp.task('watch', function() {
-  gulp.watch('app/scss/**/*.scss', ['sass']);
-  gulp.watch('app/*.html', browserSync.reload);
-  gulp.watch('app/js/**/*.js', browserSync.reload);
-})
-
-// Optimization Tasks 
-// ------------------
-
-// Optimizing CSS and JavaScript 
-gulp.task('useref', function() {
-
-  return gulp.src('app/*.html')
-    .pipe(useref())
-    .pipe(gulpIf('*.js', uglify()))
-    .pipe(gulpIf('*.css', cssnano()))
-    .pipe(gulp.dest('dist'));
+gulp.task('sass', function(){
+  return gulp.src('assets/src/styles/**/*.scss')
+    .pipe(sass()) // Converts Sass to CSS with gulp-sass
+    .pipe(gulp.dest('assets/prod/css'));
 });
 
-// Optimizing Images 
-gulp.task('images', function() {
-  return gulp.src('app/images/**/*.+(png|jpg|jpeg|gif|svg)')
-    // Caching images that ran through imagemin
-    .pipe(cache(imagemin({
-      interlaced: true,
-    })))
-    .pipe(gulp.dest('dist/images'))
+
+gulp.task('watch', function(){
+  gulp.watch('assets/src/styles/**/*.scss', ['sass']); 
+  // autres observations
 });
 
-// Copying fonts 
-gulp.task('fonts', function() {
-  return gulp.src('app/fonts/**/*')
-    .pipe(gulp.dest('dist/fonts'))
-})
+// // Vendor Plugin Scripts
+// gulp.task('plugins', function() {
+//   return gulp.src(['assets/js/source/plugins.js', 'assets/js/vendor/*.js'])
+// 	.pipe(plugins.concat('plugins.js'))
+// 	.pipe(gulp.dest('assets/js/build'))
+// 	.pipe(plugins.rename({ suffix: '.min' }))
+// 	.pipe(plugins.uglify())
+// 	.pipe(plugins.livereload(server))
+// 	.pipe(gulp.dest('assets/js'))
+// 	.pipe(plugins.notify({ message: 'Scripts task complete' }));
+// });
 
-// Cleaning 
-gulp.task('clean', function() {
-  return del.sync('dist').then(function(cb) {
-    return cache.clearAll(cb);
-  });
-})
+// // Site Scripts
+// gulp.task('scripts', function() {
+//   return gulp.src(['assets/js/source/*.js', '!assets/js/source/plugins.js'])
+// 	.pipe(plugins.jshint('.jshintrc'))
+// 	.pipe(plugins.jshint.reporter('default'))
+// 	.pipe(plugins.concat('main.js'))
+// 	.pipe(gulp.dest('assets/js/build'))
+// 	.pipe(plugins.rename({ suffix: '.min' }))
+// 	.pipe(plugins.uglify())
+// 	.pipe(plugins.livereload(server))
+// 	.pipe(gulp.dest('assets/js'))
+// 	.pipe(plugins.notify({ message: 'Scripts task complete' }));
+// });
 
-gulp.task('clean:dist', function() {
-  return del.sync(['dist/**/*', '!dist/images', '!dist/images/**/*']);
-});
+// // Images
+// gulp.task('images', function() {
+//   return gulp.src('assets/images/**/*')
+// 	.pipe(plugins.cache(plugins.imagemin({ optimizationLevel: 7, progressive: true, interlaced: true })))
+// 	.pipe(plugins.livereload(server))
+// 	.pipe(gulp.dest('assets/images'))
+// 	.pipe(plugins.notify({ message: 'Images task complete' }));
+// });
 
-// Build Sequences
-// ---------------
+// // Watch
+// gulp.task('watch', function() {
 
-gulp.task('default', function(callback) {
-  runSequence(['sass', 'browserSync', 'watch'],
-    callback
-  )
-})
+//   // Listen on port 35729
+//   server.listen(35729, function (err) {
+// 	if (err) {
+// 	  return console.log(err);
+// 	}
 
-gulp.task('build', function(callback) {
-  runSequence(
-    'clean:dist',
-    ['sass', 'useref', 'images', 'fonts'],
-    callback
-  )
-})
+// 	// Watch .scss files
+// 	gulp.watch('assets/styles/**/*.scss', ['styles']);
+
+// 	// Watch .js files
+// 	gulp.watch('assets/js/**/*.js', ['plugins', 'scripts']);
+
+// 	// Watch image files
+// 	gulp.watch('assets/images/**/*', ['images']);
+
+//   });
+
+// });
+
+// // Default task
+// gulp.task('default', ['styles', 'plugins', 'scripts', 'images', 'watch']);

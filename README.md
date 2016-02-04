@@ -1,45 +1,78 @@
-[![Build Status](https://travis-ci.org/Automattic/_s.svg?branch=master)](https://travis-ci.org/Automattic/_s)
+# WordPress Starter Theme
 
-_s
-===
+Version: 4.1.1
 
-Hi. I'm a starter theme called `_s`, or `underscores`, if you like. I'm a theme meant for hacking so don't use me as a Parent Theme. Instead try turning me into the next, most awesome, WordPress theme out there. That's what I'm here for.
+## Author:
 
-My ultra-minimal CSS might make me look like theme tartare but that means less stuff to get in your way when you're designing your awesome theme. Here are some of the other more interesting things you'll find here:
+Matt Banks ( [@mattbanks](http://twitter.com/mattbanks) / [kernelcreativemedia.com](http://www.kernelcreativemedia.com) / [mattbanks.me](http://www.mattbanks.me) )
 
-* A just right amount of lean, well-commented, modern, HTML5 templates.
-* A helpful 404 template.
-* A sample custom header implementation in `inc/custom-header.php` that can be activated by uncommenting one line in `functions.php` and adding the code snippet found in the comments of `inc/custom-header.php` to your `header.php` template.
-* Custom template tags in `inc/template-tags.php` that keep your templates clean and neat and prevent code duplication.
-* Some small tweaks in `inc/extras.php` that can improve your theming experience.
-* A script at `js/navigation.js` that makes your menu a toggled dropdown on small screens (like your phone), ready for CSS artistry. It's enqueued in `functions.php`.
-* 2 sample CSS layouts in `layouts/` for a sidebar on either side of your content.
-* Smartly organized starter CSS in `style.css` that will help you to quickly get your design off the ground.
-* Licensed under GPLv2 or later. :) Use it to make something cool.
+## Summary
 
-Getting Started
----------------
+WordPress Starter Theme for use as a starting template for building custom themes. Uses SCSS and AutoPrefixr, HTML5 Boilerplate with Modernizr and Normalize.css, and Grunt for all processing tasks. Tested with WordPress 3.9.1.
 
-If you want to keep it simple, head over to http://underscores.me and generate your `_s` based theme from there. You just input the name of the theme you want to create, click the "Generate" button, and you get your ready-to-awesomize starter theme.
+## Usage
 
-If you want to set things up manually, download `_s` from GitHub. The first thing you want to do is copy the `_s` directory and change the name to something else (like, say, `megatherium`), and then you'll need to do a five-step find and replace on the name in all the templates.
+The theme is setup to use [Grunt](http://gruntjs.com/) to compile SCSS (with source maps), run it through [AutoPrefixr](https://github.com/ai/autoprefixer), lint, concatenate and minify JavaScript (with source maps), optimize images, and [LiveReload](http://livereload.com/) the browser (with extension), with flexibility to add any additional tasks via the Gruntfile. Alternatively, you can use [CodeKit](http://incident57.com/codekit/) or whatever else you prefer to compile the SCSS and manage the JavaScript.
 
-1. Search for `'_s'` (inside single quotations) to capture the text domain.
-2. Search for `_s_` to capture all the function names.
-3. Search for `Text Domain: _s` in style.css.
-4. Search for <code>&nbsp;_s</code> (with a space before it) to capture DocBlocks.
-5. Search for `_s-` to capture prefixed handles.
+Rename folder to your theme name, change the `style.scss` intro block to your theme information. Open the theme directory in terminal and run `npm install` to pull in all Grunt dependencies. Run `grunt` to execute tasks. Code as you will. If you have the LiveReload browser extension, it will reload after any SCSS or JS changes.
 
-OR
+- Compile `assets/styles/style.scss` to `style.css`
+- Compile `assets/styles/editor-style.scss` to `editor-style.css`
+- Concatenate and minify plugins in `assets/js/vendor` and `assets/js/source/plugins.js` to `assets/js/plugins.min.js`
+- Minify and lint `assets/js/source/main.js` to `assets/js/main.min.js`
+- ??
+- Profit
 
-* Search for: `'_s'` and replace with: `'megatherium'`
-* Search for: `_s_` and replace with: `megatherium_`
-* Search for: `Text Domain: _s` and replace with: `Text Domain: megatherium` in style.css.
-* Search for: <code>&nbsp;_s</code> and replace with: <code>&nbsp;Megatherium</code>
-* Search for: `_s-` and replace with: `megatherium-`
+To concatenate and minify your jQuery plugins, add them to the `assets/js/vendor` directory and add the `js` filename and path to the `Gruntfile` `uglify` task. Previous versions of the starter theme automatically pulled all plugins in the `vendor` directory, but this has changed to allow more granular control and for managing plugins and assets with bower.
 
-Then, update the stylesheet header in `style.css` and the links in `footer.php` with your own information. Next, update or delete this readme.
+### Bower
 
-Now you're ready to go! The next step is easy to say, but harder to do: make an awesome WordPress theme. :)
+Supports [bower](https://github.com/bower/bower) to install and manage JavaScript dependencies in the `assets/js/vendor` folder.
 
-Good luck!
+### Image Optimization
+
+To optimize images, run `grunt imagemin`. This was also included in the default `watch` task, but there are currently a few issues with processing images multiple times and removing their contents.
+
+### Deployment
+
+The theme includes deployments via [grunt-rsync](https://github.com/jedrichards/grunt-rsync). The Gruntfile includes setups for staging and production - edit your paths and host, then run `grunt rsync:staging` or `grunt rsync:production` to deploy your files via rsync.
+
+### Features
+
+1. Normalized stylesheet for cross-browser compatibility using Normalize.css version 3 (IE8+)
+2. Easy to customize
+3. Flexible grid based on work from [Chris Coyier](https://twitter.com/chriscoyier)
+4. Media Queries can be nested in each selector using SASS
+5. SCSS with plenty of mixins ready to go
+6. Grunt for processing all SASS, JavaScript and images
+7. Much much more
+
+### Suggested Plugins
+
+* [Use Google Libraries](http://wordpress.org/extend/plugins/use-google-libraries/)
+* [WordPress SEO by Yoast](http://wordpress.org/extend/plugins/wordpress-seo/)
+* [Google Analytics for WordPress by Yoast](http://wordpress.org/extend/plugins/google-analytics-for-wordpress/)
+* [W3 Total Cache](http://wordpress.org/extend/plugins/w3-total-cache/)
+* [Gravity Forms](http://www.gravityforms.com/)
+
+![dependencies](https://david-dm.org/mattbanks/WordPress-Starter-Theme.png)
+
+### Contributing:
+
+Anyone and everyone is welcome to contribute! Check out the [Contributing Guidelines](CONTRIBUTING.md).
+
+### Contributors:
+
+- [ddropik](https://github.com/ddropik)
+
+### Credits
+
+Without these projects, this WordPress Starter Theme wouldn't be where it is today.
+
+* [HTML5 Boilerplate](http://html5boilerplate.com)
+* [Normalize.css](http://necolas.github.com/normalize.css)
+* [SASS / SCSS](http://sass-lang.com/)
+* [AutoPrefixr](https://github.com/ai/autoprefixer)
+* [Don't Overthink It Grids](css-tricks.com/dont-overthink-it-grids/)
+* [Underscores Theme](https://github.com/Automattic/_s)
+* [Grunt](http://gruntjs.com/)

@@ -1,13 +1,11 @@
 <?php
 /**
- * The template for displaying comments.
+ * The template for displaying Comments.
  *
- * This is the template that displays the area of the page that contains both the current comments
+ * The area of the page that contains both current comments
  * and the comment form.
  *
- * @link https://codex.wordpress.org/Template_Hierarchy
- *
- * @package watermelon-pixels
+ * @package _waterpix
  */
 
 /*
@@ -22,30 +20,23 @@ if ( post_password_required() ) {
 
 <div id="comments" class="comments-area">
 
-	<?php
-	// You can start editing here -- including this comment!
-	if ( have_comments() ) : ?>
+	<?php // You can start editing here -- including this comment! ?>
+
+	<?php if ( have_comments() ) : ?>
 		<h2 class="comments-title">
 			<?php
-				printf( // WPCS: XSS OK.
-					esc_html( _nx( 'One thought on &ldquo;%2$s&rdquo;', '%1$s thoughts on &ldquo;%2$s&rdquo;', get_comments_number(), 'comments title', 'watermelon_pix' ) ),
-					number_format_i18n( get_comments_number() ),
-					'<span>' . get_the_title() . '</span>'
-				);
+				printf( _nx( 'One thought on &ldquo;%2$s&rdquo;', '%1$s thoughts on &ldquo;%2$s&rdquo;', get_comments_number(), 'comments title', '_waterpix' ),
+					number_format_i18n( get_comments_number() ), '<span>' . get_the_title() . '</span>' );
 			?>
 		</h2>
 
-		<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : // Are there comments to navigate through? ?>
-		<nav id="comment-nav-above" class="navigation comment-navigation" role="navigation">
-			<h2 class="screen-reader-text"><?php esc_html_e( 'Comment navigation', 'watermelon_pix' ); ?></h2>
-			<div class="nav-links">
-
-				<div class="nav-previous"><?php previous_comments_link( esc_html__( 'Older Comments', 'watermelon_pix' ) ); ?></div>
-				<div class="nav-next"><?php next_comments_link( esc_html__( 'Newer Comments', 'watermelon_pix' ) ); ?></div>
-
-			</div><!-- .nav-links -->
+		<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : // are there comments to navigate through ?>
+		<nav id="comment-nav-above" class="comment-navigation" role="navigation">
+			<h1 class="screen-reader-text"><?php _e( 'Comment navigation', '_waterpix' ); ?></h1>
+			<div class="nav-previous"><?php previous_comments_link( __( '&larr; Older Comments', '_waterpix' ) ); ?></div>
+			<div class="nav-next"><?php next_comments_link( __( 'Newer Comments &rarr;', '_waterpix' ) ); ?></div>
 		</nav><!-- #comment-nav-above -->
-		<?php endif; // Check for comment navigation. ?>
+		<?php endif; // check for comment navigation ?>
 
 		<ol class="comment-list">
 			<?php
@@ -56,30 +47,23 @@ if ( post_password_required() ) {
 			?>
 		</ol><!-- .comment-list -->
 
-		<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : // Are there comments to navigate through? ?>
-		<nav id="comment-nav-below" class="navigation comment-navigation" role="navigation">
-			<h2 class="screen-reader-text"><?php esc_html_e( 'Comment navigation', 'watermelon_pix' ); ?></h2>
-			<div class="nav-links">
-
-				<div class="nav-previous"><?php previous_comments_link( esc_html__( 'Older Comments', 'watermelon_pix' ) ); ?></div>
-				<div class="nav-next"><?php next_comments_link( esc_html__( 'Newer Comments', 'watermelon_pix' ) ); ?></div>
-
-			</div><!-- .nav-links -->
+		<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : // are there comments to navigate through ?>
+		<nav id="comment-nav-below" class="comment-navigation" role="navigation">
+			<h1 class="screen-reader-text"><?php _e( 'Comment navigation', '_waterpix' ); ?></h1>
+			<div class="nav-previous"><?php previous_comments_link( __( '&larr; Older Comments', '_waterpix' ) ); ?></div>
+			<div class="nav-next"><?php next_comments_link( __( 'Newer Comments &rarr;', '_waterpix' ) ); ?></div>
 		</nav><!-- #comment-nav-below -->
-		<?php
-		endif; // Check for comment navigation.
+		<?php endif; // check for comment navigation ?>
 
-	endif; // Check for have_comments().
+	<?php endif; // have_comments() ?>
 
-
-	// If comments are closed and there are comments, let's leave a little note, shall we?
-	if ( ! comments_open() && get_comments_number() && post_type_supports( get_post_type(), 'comments' ) ) : ?>
-
-		<p class="no-comments"><?php esc_html_e( 'Comments are closed.', 'watermelon_pix' ); ?></p>
 	<?php
-	endif;
-
-	comment_form();
+		// If comments are closed and there are comments, let's leave a little note, shall we?
+		if ( ! comments_open() && '0' != get_comments_number() && post_type_supports( get_post_type(), 'comments' ) ) :
 	?>
+		<p class="no-comments"><?php _e( 'Comments are closed.', '_waterpix' ); ?></p>
+	<?php endif; ?>
+
+	<?php comment_form(); ?>
 
 </div><!-- #comments -->

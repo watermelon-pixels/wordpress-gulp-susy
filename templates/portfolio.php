@@ -1,11 +1,8 @@
 <?php
 /**
- * The template for displaying all pages.
+ * Template Name: Portfolio Page
  *
- * This is the template that displays all pages by default.
- * Please note that this is the WordPress construct of pages
- * and that other 'pages' on your WordPress site will use a
- * different template.
+ * Displays content for portfolio page layouts
  *
  * @package _waterpix
  */
@@ -17,7 +14,7 @@ get_header(); ?>
 
 			<?php while ( have_posts() ) : the_post(); ?>
 
-				<?php get_template_part( 'parts/content', 'page' ); ?>
+				<?php get_template_part( 'content', 'page' ); ?>
 
 				<?php
 					// If comments are open or we have at least one comment, load up the comment template

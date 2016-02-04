@@ -1,11 +1,8 @@
 <?php
 /**
- * The template for displaying all pages.
+ * The template for displaying the front page.
  *
- * This is the template that displays all pages by default.
- * Please note that this is the WordPress construct of pages
- * and that other 'pages' on your WordPress site will use a
- * different template.
+ * This is the template that displays on the front page only.
  *
  * @package _waterpix
  */
