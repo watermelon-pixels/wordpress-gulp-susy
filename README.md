@@ -4,7 +4,7 @@ Version: 1.1.1
 
 ## Author:
 
-Benoît Vigouroux ( [@mattbanks](http://twitter.com/mattbanks) / [watermelon-pixels.fr](http://watermelon-pixels.fr/) )
+Benoît Vigouroux ( [@chantdeleau](http://twitter.com/mattbanks) / [watermelon-pixels.fr](http://watermelon-pixels.fr/) )
 
 ## Summary
 
@@ -24,6 +24,14 @@ Rename folder to your theme name, change the `style.scss` intro block to your th
 - Profit
 
 To concatenate and minify your jQuery plugins, add them to the `assets/js/vendor` directory and add the `js` filename and path to the `Gulpfile` `uglify` task. Previous versions of the starter theme automatically pulled all plugins in the `vendor` directory, but this has changed to allow more granular control and for managing plugins and assets with bower.
+
+
+### REQUIRED
+
+* Install [npm](http://blog.npmjs.org/post/85484771375/how-to-install-npm).
+* Install [Gulp](http://gulpjs.com/): `npm install gulp -g`.
+* Download or clone this repo: `https://github.com/watermelon-pixels/wordpress-gulp-susy.git`.
+
 
 ### Bower
 
