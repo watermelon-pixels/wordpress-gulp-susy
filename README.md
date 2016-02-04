@@ -44,7 +44,7 @@ To optimize images, run `Gulp imagemin`. This was also included in the default `
 
 1. Normalized stylesheet for cross-browser compatibility using Normalize.css version 3 (IE8+)
 2. Easy to customize
-3. Flexible grid based on work from [Chris Coyier](https://twitter.com/chriscoyier)
+3. Flexible grid on work from [Susy](http://susy.oddbird.net/)
 4. Media Queries can be nested in each selector using SASS
 5. SCSS with plenty of mixins ready to go
 6. Grunt for processing all SASS, JavaScript and images
@@ -57,8 +57,8 @@ Without these projects, this WordPress Starter Theme wouldn't be where it is tod
 
 * [HTML5 Boilerplate](http://html5boilerplate.com)
 * [Normalize.css](http://necolas.github.com/normalize.css)
+* [Susy.css](http://susy.oddbird.net/)
 * [SASS / SCSS](http://sass-lang.com/)
 * [AutoPrefixr](https://github.com/ai/autoprefixer)
-* [Don't Overthink It Grids](css-tricks.com/dont-overthink-it-grids/)
 * [Underscores Theme](https://github.com/Automattic/_s)
 * [Gulp](http://gulpjs.com/)
