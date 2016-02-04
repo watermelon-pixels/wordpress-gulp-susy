@@ -57,7 +57,7 @@ Without these projects, this WordPress Starter Theme wouldn't be where it is tod
 
 * [HTML5 Boilerplate](http://html5boilerplate.com)
 * [Normalize.css](http://necolas.github.com/normalize.css)
-* [Susy.css](http://susy.oddbird.net/)
+* [Susy](http://susy.oddbird.net/)
 * [SASS / SCSS](http://sass-lang.com/)
 * [AutoPrefixr](https://github.com/ai/autoprefixer)
 * [Underscores Theme](https://github.com/Automattic/_s)
