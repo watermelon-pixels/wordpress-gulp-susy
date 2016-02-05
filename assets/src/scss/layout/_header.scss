@@ -1,0 +1,28 @@
+.site-header{
+	background-color: $grey-dark;
+    border-bottom: 1px solid #e4e4e4;
+    border-top: 1px solid #e4e4e4;
+    display: block;
+    padding-top: 15px;
+}
+
+.site-branding{
+    box-sizing: border-box;
+    display: block;
+    float: left;
+    height: 41px;
+    margin-top: -1px;
+    padding: 0 15px;
+    text-shadow: 0 1px 0 #fff;
+}
+
+.site-title{
+	margin:0;
+	padding: 0 15px;
+    height: 40px;
+    margin-top: 0;
+}
+
+.site-baseline {
+	font-size: 14px
+}

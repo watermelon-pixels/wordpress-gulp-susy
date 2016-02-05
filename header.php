@@ -16,7 +16,6 @@
 	<link rel="shortcut icon" href="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/favicon.ico">
 	<link rel="apple-touch-icon" href="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/apple-touch-icon.png">
 	<?php wp_head(); ?>
-	<link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri(); ?>/assets/prod/css/style.css" type="text/css" media="screen,projection" />
 </head>
 
 <body <?php body_class(); ?>>
@@ -27,15 +26,17 @@
 
 	<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', '_waterpix' ); ?></a>
 
-	<header id="masthead" class="site-header" role="banner">
-		<div class="site-branding">
-			<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
-			<h2 class="site-description"><?php bloginfo( 'description' ); ?></h2>
-		</div>
-
+	<header id="masthead" class="site-header">
 		<nav id="site-navigation" class="main-navigation" role="navigation">
+			<div class="site-branding">
+				<h1 class="site-title" role="banner">
+					<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
+						<img class="uk-margin uk-margin-remove" width="90" height="30" alt="Logo <?php bloginfo( 'name' ); ?>" src="http://getuikit.com/docs/images/logo_uikit.svg">
+					</a>
+				</h1>
+				<h2 class="site-baseline"><?php bloginfo( 'description' ); ?></h2>
+			</div>
 			<button class="menu-toggle"><?php _e( 'Primary Menu', '_waterpix' ); ?></button>
-
 			<?php wp_nav_menu( array( 'theme_location' => 'primary' ) ); ?>
 		</nav><!-- #site-navigation -->
 	</header><!-- #masthead -->
