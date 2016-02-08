@@ -34,6 +34,29 @@ require get_template_directory() . '/lib/theme-helpers.php';
  */
 require get_template_directory() . '/lib/inc/template-tags.php';
 
+
+/**
+ * Options panel website setup.
+ */
+require get_template_directory() . '/lib/theme_settings.php';
+
+/**
+ * Options panel website setup.
+ */
+//require get_template_directory() . '/lib/theme_panel.php';
+
+
+/**
+ * http://themeshaper.com/2010/06/03/sample-theme-options/
+ */
+require_once get_template_directory() . '/lib/theme-options/theme-options.php';
+
+/**
+ * Options panel https://www.damianschwyrz.de/wordpress-theme-simple-option-seite-erstellen-und-integrieren/
+ */
+require get_template_directory() . '/lib/functions-theme-options.php';
+require get_template_directory() . '/lib/theme-options.php';
+
 /**
  * Custom functions that act independently of the theme templates.
  */
