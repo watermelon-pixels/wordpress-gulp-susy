@@ -84,6 +84,7 @@ function mb_imagelink_setup() {
 function mb_scripts() {
 	//wp_enqueue_style( '_waterpix-style', get_stylesheet_uri() );
 	wp_enqueue_style( 'main-style', get_template_directory_uri() .'/assets/dist/css/style.css', array(), '20160102');
+	wp_enqueue_style( 'glyphe', get_template_directory_uri() .'/assets/dist/css/icons.css', array(), '20160102');
 	wp_enqueue_script( '_waterpix-navigation', get_template_directory_uri() . '/assets/js/vendor/navigation.js', array(), '20120206', true );
 	wp_enqueue_script( '_waterpix-skip-link-focus-fix', get_template_directory_uri() . '/assets/js/vendor/skip-link-focus-fix.js', array(), '20130115', true );
 

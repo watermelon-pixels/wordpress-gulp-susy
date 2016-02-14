@@ -1,3 +1,37 @@
+/* Simple inline nav */
+
+.secondary-nav {
+	display: flex;
+	flex-wrap: wrap;
+	list-style: outside none none;
+	margin:0;
+	padding: 0;
+
+	> *:nth-child(n+2)::before {
+	    border-left: 1px solid #e5e5e5;
+	    margin-right: 10px;
+	}
+
+	> *::before {
+	    content: "";
+	    display: inline-block;
+	    height: 10px;
+	    vertical-align: middle;
+	}
+
+	> * {
+	    float: left;
+	    flex: 0 0 auto;
+	    margin-top: 10px;
+	    padding-left: 10px;
+	    position: relative;
+	}
+
+	a {
+		text-decoration: none;
+	}
+}
+
 .main-navigation {
 	clear: both;
 	display: block;
@@ -13,7 +47,7 @@
 			background-color: $grey-dark;
 			float: left;
 			position: absolute;
-			top: 3em;
+			top: 70px;
 			left: -999em;
 			z-index: 99999;
 
@@ -29,10 +63,6 @@
 				}
 			}
 
-/* s			a {
-	width: 200px;
-}
- */
 			:hover > a,
 			.focus > a {
 			}
@@ -57,17 +87,34 @@
 			background-color: $white;
 			color:$grey-dark
 		}
+
+		li {
+			width:100%;
+			min-width: 280px;
+
+			a {
+			    font-size: 15px !important;
+			    text-align: left !important;
+			}
+		}
 	}
-	a {
-		display: inline-block;
-		text-decoration: none;
-		padding: 10px 15px;
-		margin-left: 0;
-		margin-bottom: 10px;
-		color: $white;
-		font-size: 15px;
-		white-space: nowrap;
-		font-weight: 100;
+
+
+	.menu-item a {
+	    color: $white;
+	    display: block;
+	    font-size: 18px;
+	    font-weight: 100;
+	    line-height: 70px;
+	    margin: 0;
+	    padding: 0 34px;
+	    position: relative;
+	    text-align: center;
+	    text-decoration: none;
+	    text-shadow: none;
+	    text-transform: uppercase;
+	    transition: all 0.3s ease-out 0s;
+	    z-index: 2;
 	}
 
 	> a {
@@ -120,4 +167,59 @@
 		text-align: right;
 		width: 50%;
 	}
+}
+
+
+/* Responsive menu */
+
+.menu-expanded {
+  transition: all .25s;
+  text-align: center;
+  line-height: 200px;
+  height: 100%;
+  width: 100%;
+  border-radius: 0px;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.85);
+}
+
+.menu-expanded ul {
+  transition: all .05s;
+  position: relative;
+  left: 0;
+  z-index: 2;
+}
+
+.menu-expanded a {
+  transition: all .15s;
+  text-decoration: none;
+  color: white;
+  font-size: 2em;
+  padding: 5px;
+}
+
+.menu-expanded a:hover {
+  transition: all .15s;
+  letter-spacing: 2px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.menu-expanded .bar {
+  background-color: transparent;
+  transition: all .25s;
+}
+
+.menu-expanded .bar:before {
+  transition: all .25s;
+  content: "";
+  transform: rotate(45deg);
+  top: -0px;
+}
+
+.menu-expanded .bar:after {
+  transition: all .25s;
+  content: "";
+  transform: rotate(-45deg);
+  top: 0px;
 }

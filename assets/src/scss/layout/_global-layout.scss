@@ -17,31 +17,64 @@ $susy: (
     rem: true,
 );
 
+
 // on inclut les propriétés border-box
 @include border-box-sizing;
-
-
 
 .main-navigation,
 .page-inner,
 .site-content,
-.site-info {
-  @include container (1120px);
+.site-info,
+.up-footer-container{
+  @include container (1170px);
 }
 
-.content-area{
+.site-content {
+    padding-top: 80px;
+}
+
+#primary{
   @include span(8);
+  
+	&.full-width{
+	  @include span(12);
+	}
 }
 
-.widget-area {
-  @include span(4 last); 
+.logo-footer-wrapper,
+.copyright {
+	@include span(6);
+}
+
+.socials-footer {
+	@include span(6 last); 
+}
+
+.socials,
+.secondary-nav-container {
+    float: right;
+    line-height: 0;
+    padding-top: 0;
+}
+
+.product-container{
+	@include span(4); 
+
+    &:last-of-type{
+        @include span(4 last); 
+    }
+}
+
+#secondary {
+	@include span(4 last); 
 }
 
 
 /*--------------------------------------------------------------
-## Header
+## Header & footer
 --------------------------------------------------------------*/
 @import "header";
+@import "footer";
 
 /*--------------------------------------------------------------
 ## Posts and pages
@@ -52,6 +85,7 @@ $susy: (
 ## Asides
 --------------------------------------------------------------*/
 @import "primary/asides";
+@import "primary/blocks";
 
 /*--------------------------------------------------------------
 ## Comments

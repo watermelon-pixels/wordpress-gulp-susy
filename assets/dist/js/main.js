@@ -44,12 +44,39 @@ function set_wputh_contact_form() {
 
 }
 
-(function($) {
 
-	// all Javascript code goes here
+jQuery.noConflict();
+jQuery(document).ready(function() {
 
-})(jQuery);
+	//var $ = JQuery;
 
+	// Responsive menu 
+	jQuery('.menu-toggle').click(function() {
+	  jQuery(this).toggleClass('menu-expanded');
+	});
+
+	// Login Tabs
+	jQuery('.tabs').on('click', 'li a', function(e){
+	  e.preventDefault();
+	  var $tab = jQuery(this),
+	       href = $tab.attr('href');
+
+	   jQuery('.active').removeClass('active');
+	   $tab.addClass('active');
+
+	   jQuery('.show')
+	      .removeClass('show')
+	      .addClass('hide')
+	      .hide();
+	  
+	    jQuery(href)
+	      .removeClass('hide')
+	      .addClass('show')
+	      .hide()
+	      .fadeIn(550);
+	});
+
+ });
 // Avoid `console` errors in browsers that lack a console.
 (function() {
     var method;
@@ -81,7 +108,7 @@ function set_wputh_contact_form() {
  * Contains handlers to make Theme Customizer preview reload changes asynchronously.
  */
 
-( function( $ ) {
+/*( function( $ ) {
 	// Site title and description.
 	wp.customize( 'blogname', function( value ) {
 		value.bind( function( to ) {
@@ -110,7 +137,7 @@ function set_wputh_contact_form() {
 			}
 		} );
 	} );
-} )( jQuery );
+} )( jQuery );*/
 
 /**
  * navigation.js

@@ -15,6 +15,13 @@ function mb_register_required_plugins() {
 		),
 
 		array(
+			'name' 				=> 'EWWW Image Optimizer',
+			'slug' 				=> 'eww-image-optimizer',
+			'required' 			=> true,
+			'force_activation'	=> true
+		),
+
+		array(
 			'name' 				=> 'Use Google Libraries',
 			'slug' 				=> 'use-google-libraries',
 			'required' 			=> true,

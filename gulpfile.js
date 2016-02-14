@@ -5,6 +5,9 @@ var gulp = require('gulp');
 var gulp = require('gulp');
 var gulpLoadPlugins = require('gulp-load-plugins');
 var plugins = gulpLoadPlugins();
+var sass = require('gulp-sass');
+var iconfont = require('gulp-iconfont');
+var iconfontCss = require('gulp-iconfont-css');
 
 // 	plugins = require('gulp-load-plugins')({ camelize: true }),
 // 	lr = require('tiny-lr'),
@@ -22,7 +25,7 @@ var plugins = gulpLoadPlugins();
 // 	.pipe(plugins.notify({ message: 'Styles task complete' }));
 // });
 
-var sass = require('gulp-sass');
+
 
 gulp.task('sass', function(){
   return gulp.src('assets/src/scss/**/*.scss')
@@ -35,6 +38,25 @@ gulp.task('watch', function(){
   gulp.watch('assets/src/scss/**/*.scss', ['sass']); 
   // autres observations
 });
+
+
+gulp.task('glyphicons', function() {
+ return gulp.src('assets/src/glyphicons/**/*')
+    .pipe(iconfontCss({
+      fontName: 'icons', // nom de la fonte, doit être identique au nom du plugin iconfont
+      targetPath: '../../dist/css/icons.css', // emplacement de la css finale
+      fontPath: '../fonts/' // emplacement des fontes finales
+    }))
+    .pipe(iconfont({
+      	fontName: 'icons', // identique au nom de iconfontCss
+    	centerHorizontally: true,
+    	normalize: true,
+		appendUnicode: true
+     }))
+    .pipe( gulp.dest('assets/dist/fonts') );
+});
+
+
 
 // // Vendor Plugin Scripts
 // gulp.task('plugins', function() {

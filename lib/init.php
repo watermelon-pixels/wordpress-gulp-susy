@@ -42,6 +42,7 @@ function _waterpix_setup() {
 	// Register nav menus
 	register_nav_menus( array(
 		'primary' => __( 'Primary Menu', 'waterpix' ),
+		'secondary_nav' => __( 'Footer Menu', 'waterpix' ),
 	) );
 
 	// Register Widget Areas

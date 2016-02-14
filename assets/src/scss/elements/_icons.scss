@@ -1,0 +1,51 @@
+.icon-button {
+    border-bottom-colors: none;
+    border-left-colors: none;
+    border-right-colors: none;
+    border-top-colors: none;
+    background: #f7f7f7 linear-gradient(to bottom, #fff, #eee) repeat scroll 0 0 border-box;
+    border-color: #ccc #ccc #bbb;
+    border-image: none;
+    border-radius: 100%;
+    border-style: solid;
+    border-width: 1px;
+    box-sizing: border-box;
+    color: #666;
+    display: inline-block;
+    font-size: 18px;
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    text-shadow: 0 1px 0 #fff;
+    width: 35px;
+
+    &:focus,
+    &:hover{
+	    background-color: #fafafa;
+	    background-image: none;
+	    color: #666;
+	    outline: 0 none; 	
+    }
+}
+
+
+[class*="icon-"],
+[class*="icon-"]:focus,
+[class*="icon-"]:hover {
+    text-decoration: none;
+}
+[class*="icon-"] {
+    display: inline-block;
+    color:$white;
+    line-height: 1;
+    font-family: "icons";
+}
+
+.icon-large{
+    font-size: 250%;
+    vertical-align: -22%;
+}
+
+.icon-extra-large{
+    font-size: 500%;
+}

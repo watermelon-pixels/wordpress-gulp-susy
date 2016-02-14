@@ -31,7 +31,7 @@
 			<div class="site-branding">
 				<h1 class="site-title" role="banner">
 					<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
-						<img class="uk-margin uk-margin-remove" width="90" height="30" alt="Logo <?php bloginfo( 'name' ); ?>" src="http://getuikit.com/docs/images/logo_uikit.svg">
+						<span title="Logo <?php bloginfo( 'name' ); ?>" class="icon-atari-pixel icon-extra-large"></span>
 					</a>
 				</h1>
 				<h2 class="site-baseline"><?php bloginfo( 'description' ); ?></h2>

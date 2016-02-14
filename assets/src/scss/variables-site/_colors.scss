@@ -8,7 +8,7 @@ $color__background-ins: #fff9c0;
 $color__text-screen: #21759b;
 $color__text-input: #666;
 $color__text-input-focus: #111;
-$color__link: royalblue;
+$color__link: #21377A;
 $color__link-visited: purple;
 $color__link-hover: midnightblue;
 $color__text-main: #404040;
@@ -23,6 +23,8 @@ $color__border-abbr: #666;
 $grey-light: #EFEFEF;
 $grey: #E4E4E4;
 $grey-med-dark: #999;
-$grey-dark: #444;
+$grey-dark: $color__link;
 
 $white: #fff;
+
+$placeholder-color : $color__background-body;

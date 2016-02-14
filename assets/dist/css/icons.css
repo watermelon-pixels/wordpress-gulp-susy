@@ -1,0 +1,105 @@
+@font-face {
+	font-family: "icons";
+	src: url('../fonts/icons.eot');
+	src: url('../fonts/icons.eot?#iefix') format('eot'),
+		url('../fonts/icons.woff') format('woff'),
+		url('../fonts/icons.ttf') format('truetype'),
+		url('../fonts/icons.svg#icons') format('svg');
+}
+
+.icon:before {
+	font-family: "icons";
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: normal;
+	/* speak: none; only necessary if not using the private unicode range (firstGlyph option) */
+	text-decoration: none;
+	text-transform: none;
+}
+
+
+.icon-arrow-down:before {
+	content: "\E001";
+}
+
+.icon-arrow-left:before {
+	content: "\E002";
+}
+
+.icon-arrow-right:before {
+	content: "\E003";
+}
+
+.icon-arrow-up:before {
+	content: "\E004";
+}
+
+.icon-atari-pixel:before {
+	content: "\E005";
+}
+
+.icon-facebook:before {
+	content: "\E006";
+}
+
+.icon-github:before {
+	content: "\E007";
+}
+
+.icon-google-plus:before {
+	content: "\E008";
+}
+
+.icon-hamb-menu:before {
+	content: "\E009";
+}
+
+.icon-instagram:before {
+	content: "\E00A";
+}
+
+.icon-linkedin:before {
+	content: "\E00B";
+}
+
+.icon-locked:before {
+	content: "\E00C";
+}
+
+.icon-mail:before {
+	content: "\E00D";
+}
+
+.icon-pdf:before {
+	content: "\E00E";
+}
+
+.icon-pin-map:before {
+	content: "\E00F";
+}
+
+.icon-pinterest:before {
+	content: "\E010";
+}
+
+.icon-search:before {
+	content: "\E011";
+}
+
+.icon-talking:before {
+	content: "\E012";
+}
+
+.icon-twitter:before {
+	content: "\E013";
+}
+
+.icon-vimeo:before {
+	content: "\E014";
+}
+
+.icon-youtube:before {
+	content: "\E015";
+}

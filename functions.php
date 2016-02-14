@@ -46,6 +46,11 @@ require get_template_directory() . '/lib/theme_settings.php';
 //require get_template_directory() . '/lib/theme_panel.php';
 
 
+/* Options framework */
+
+require get_template_directory() . '/lib/options.php';
+
+
 /**
  * http://themeshaper.com/2010/06/03/sample-theme-options/
  */
@@ -104,4 +109,35 @@ function mb_add_post_type_caps() {
 add_filter( 'wpseo_metabox_prio', 'mb_filter_yoast_seo_metabox' );
 function mb_filter_yoast_seo_metabox() {
 	return 'low';
+}
+
+
+/** Automatically Updating Copyright Years */
+
+if ( ! function_exists( 'get_copyright_years' ) ) {
+  function get_copyright_years( $earliest_id = null ) {
+    $earliest_args = array(
+      'post_type'   => array( 'any' ),
+      'numberposts' => 1,
+      'orderby'     => 'date',
+      'order'       => 'ASC'
+    );
+    $get_post      = $earliest_id
+                   ? get_post( $earliest_id )
+                   : null;
+    if ( ! $get_post ) {
+      $get_post = array_shift( get_posts( $earliest_args ) );
+    }
+    $earliest_date = date( 'Y', strtotime( $get_post->post_date ) );
+    $current_date  = date( 'Y' );
+    return $earliest_date == $current_date
+           ? $current_date
+           : $earliest_date . '&ndash;' . $current_date;
+  }
+}
+
+if ( ! function_exists( 'copyright_years' ) ) {
+  function copyright_years( $earliest_id = null ) {
+    echo get_copyright_years( $earliest_id );
+  }
 }
