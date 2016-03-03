@@ -21,16 +21,17 @@ $susy: (
 // on inclut les propriétés border-box
 @include border-box-sizing;
 
-.main-navigation,
+.masthead,
 .page-inner,
 .site-content,
 .site-info,
 .up-footer-container{
-  @include container (1170px);
+  @include container (1280px);
 }
 
 .site-content {
-    padding-top: 80px;
+    padding-top: 135px;
+    padding-bottom: 5%;
 }
 
 #primary{
