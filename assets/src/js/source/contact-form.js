@@ -2,10 +2,6 @@
 
 'use strict';
 
-jQuery(document).ready(function() {
-    set_wputh_contact_form();
-});
-
 /* ----------------------------------------------------------
   Set Contact form
 ---------------------------------------------------------- */
@@ -43,3 +39,8 @@ function set_wputh_contact_form() {
     });
 
 }
+
+
+jQuery(document).ready(function() {
+    set_wputh_contact_form();
+});

@@ -17,8 +17,8 @@ register settings
 ----------------------------------------------------*/
 function theme_settings_init(){
 register_setting( 'theme_settings', 'theme_settings' );
-wp_enqueue_style("panel_style", get_template_directory_uri()."/panel.css", false, "1.0", "all");
-wp_enqueue_script("panel_script", get_template_directory_uri()."/panel_script.js", false, "1.0");
+  wp_enqueue_style("panel_style", get_template_directory_uri()."/panel.css", false, "1.0", "all");
+  wp_enqueue_script("panel_script", get_template_directory_uri()."/panel_script.js", false, "1.0");
 }
 
 /*---------------------------------------------------

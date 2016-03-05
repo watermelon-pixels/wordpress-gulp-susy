@@ -3,6 +3,9 @@
  *
  * Handles toggling the navigation menu for small screens.
  */
+'use strict';
+
+
 ( function() {
 	var container, button, menu;
 

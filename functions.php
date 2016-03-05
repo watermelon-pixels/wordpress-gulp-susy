@@ -48,19 +48,19 @@ require get_template_directory() . '/lib/theme_settings.php';
 
 /* Options framework */
 
-require get_template_directory() . '/lib/options.php';
+//require get_template_directory() . '/lib/options.php';
 
 
 /**
  * http://themeshaper.com/2010/06/03/sample-theme-options/
  */
-require_once get_template_directory() . '/lib/theme-options/theme-options.php';
+//require_once get_template_directory() . '/lib/theme-options/theme-options.php';
 
 /**
  * Options panel https://www.damianschwyrz.de/wordpress-theme-simple-option-seite-erstellen-und-integrieren/
  */
-require get_template_directory() . '/lib/functions-theme-options.php';
-require get_template_directory() . '/lib/theme-options.php';
+//require get_template_directory() . '/lib/functions-theme-options.php';
+//require get_template_directory() . '/lib/theme-options.php';
 
 /**
  * Custom functions that act independently of the theme templates.
@@ -114,7 +114,7 @@ function mb_filter_yoast_seo_metabox() {
 
 /** Automatically Updating Copyright Years */
 
-if ( ! function_exists( 'get_copyright_years' ) ) {
+/*if ( ! function_exists( 'get_copyright_years' ) ) {
   function get_copyright_years( $earliest_id = null ) {
     $earliest_args = array(
       'post_type'   => array( 'any' ),
@@ -140,4 +140,4 @@ if ( ! function_exists( 'copyright_years' ) ) {
   function copyright_years( $earliest_id = null ) {
     echo get_copyright_years( $earliest_id );
   }
-}
+}*/

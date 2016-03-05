@@ -27,18 +27,22 @@
 	<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', '_waterpix' ); ?></a>
 
 	<header id="masthead" class="site-header">
-		<nav id="site-navigation" class="main-navigation" role="navigation">
-			<div class="site-branding">
-				<h1 class="site-title" role="banner">
-					<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
-						<span title="Logo <?php bloginfo( 'name' ); ?>" class="icon-atari-pixel icon-extra-large"></span>
-					</a>
-				</h1>
-				<h2 class="site-baseline"><?php bloginfo( 'description' ); ?></h2>
-			</div>
-			<button class="menu-toggle"><?php _e( 'Primary Menu', '_waterpix' ); ?></button>
-			<?php wp_nav_menu( array( 'theme_location' => 'primary' ) ); ?>
-		</nav><!-- #site-navigation -->
+		<div class="masthead">
+			<h1 class="site-title" role="banner">
+				<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
+					<?php bloginfo( 'name' ); ?>
+				</a>
+			</h1>
+<!-- 			<h2 class="site-baseline"><?php bloginfo( 'description' ); ?></h2> -->
+			<nav id="site-navigation" class="main-navigation" role="navigation">
+				<button class="menu-toggle"><?php _e( 'Primary Menu', '_waterpix' ); ?></button>
+				<?php wp_nav_menu( array( 'theme_location' => 'primary' ) ); ?>
+			</nav><!-- #site-navigation -->
+		</div>
 	</header><!-- #masthead -->
-
+	<?php if ( is_front_page() ) {	//Homesite fullscreen background
+		echo'<div class="fullscreen-background">
+		</div>';
+	    }
+	; ?>
 	<div id="content" class="site-content">
