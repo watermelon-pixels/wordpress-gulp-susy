@@ -1,4 +1,4 @@
-// Document Javascript Tanguy Groupe Web App
+// Gulpsy Javascript Document
 
 // Remplacer les clicks click(function() par on('tap',function()
 'use strict';
@@ -18,29 +18,6 @@ jQuery(document).ready(function($) {
 	}); 
 
 	//Shrink header bar
-/*	$(function(){
-	 var shrinkHeader = 100;
-	  $(window).scroll(function() {
-	    var scroll = getCurrentScroll();
-	      if ( scroll >= shrinkHeader ) {
-	           $('.site-header').addClass('shrink');
-	        }
-	        else {
-	            $('.site-header').removeClass('shrink');
-	        }
-	  });
-	function getCurrentScroll() {
-	    return window.pageYOffset;
-	    }
-	});
-*/
-
-	/*!
-	 * prettySticky - v1 - 2014-10-26
-	 * https://github.com/moyamiller/prettySticky
-	 * Copyright (c) 2014 Moya Miller
-	 */
-
 	$(function() {
 	    $(window).scroll(function() {
 	        var scroll = $(window).scrollTop() + 90;
@@ -88,19 +65,36 @@ jQuery(document).ready(function($) {
 
 	//SHOW/HIDE FOOTER
 	$('#slide-toggle').click(function(){	
-		if ($(".up-footer").is(":hidden")) {
+		if ($('.up-footer').is(':hidden')) {
 				$(this).css('background-position','0 0');
-				$(".up-footer").slideDown("slow", function() {
-				    $( this )
-					.filter( ".middle" )
-					.focus();
-				 });
+				$('.up-footer').slideDown('slow', function() {
+				    $(this)
+					    .addClass('open')
+						.filter( ".middle" )
+						.focus();
+					$('.icon-arrow-up')
+						.removeClass('icon-arrow-up')
+						.addClass('icon-arrow-down');
+				});
 			} else {
 				$(this).css('background-position','0 0');
 				//alert("Cliquer pour continuer");
-				$(".up-footer").slideUp("slow");
+				$(".up-footer").slideUp('slow', function() {
+					$('.icon-arrow-down')
+						.css({transition: 'all 0.3s ease-in-out 0.2s'})
+						.removeClass('icon-arrow-down')
+						.addClass('icon-arrow-up');
+				});
 			}
 		return false;			   
-	});	
+	});
+
+
+	//File Upload 
+/*    jQuery('input.fakae-upload').FakeUpload({
+        defaultTxt : 'Parcourir ...',
+        hasFakeButton : 1,
+        hasFakeButtonTxt : 'Choisir un fichier',
+    });*/
 
 });

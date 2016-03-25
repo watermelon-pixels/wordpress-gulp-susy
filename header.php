@@ -4,7 +4,7 @@
  *
  * Displays all of the <head> section and everything up till <div id="content">
  *
- * @package _waterpix
+ * @package _gulpsy
  */
 ?>
 <!DOCTYPE html>
@@ -24,7 +24,7 @@
 	    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 	<![endif]-->
 
-	<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', '_waterpix' ); ?></a>
+	<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', '_gulpsy' ); ?></a>
 
 	<header id="masthead" class="site-header">
 		<div class="masthead">
@@ -35,7 +35,7 @@
 			</h1>
 <!-- 			<h2 class="site-baseline"><?php bloginfo( 'description' ); ?></h2> -->
 			<nav id="site-navigation" class="main-navigation" role="navigation">
-				<button class="menu-toggle"><?php _e( 'Primary Menu', '_waterpix' ); ?></button>
+				<button class="menu-toggle"><?php _e( 'Primary Menu', '_gulpsy' ); ?></button>
 				<?php wp_nav_menu( array( 'theme_location' => 'primary' ) ); ?>
 			</nav><!-- #site-navigation -->
 		</div>

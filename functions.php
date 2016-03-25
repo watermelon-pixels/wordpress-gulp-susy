@@ -1,8 +1,8 @@
 <?php
 /**
- * _waterpix functions and definitions
+ * _gulpsy functions and definitions
  *
- * @package _waterpix
+ * @package _gulpsy
  */
 
 /****************************************
@@ -25,42 +25,43 @@ require get_template_directory() . '/lib/theme-functions.php';
 require get_template_directory() . '/lib/theme-helpers.php';
 
 /**
- * Implement the Custom Header feature.
- */
-//require get_template_directory() . '/lib/inc/custom-header.php';
-
-/**
  * Custom template tags for this theme.
  */
 require get_template_directory() . '/lib/inc/template-tags.php';
 
+/**
+ * Options panel website setup.
+ */
+//if ( is_admin() ) require_once( TEMPLATEPATH . '/lib/theme-options/settings.php' );
+
+// OLD Options panel
+// require_once( TEMPLATEPATH . '/lib/theme-options/gulpsy-options.php' );
 
 /**
  * Options panel website setup.
  */
-require get_template_directory() . '/lib/theme_settings.php';
 
-/**
- * Options panel website setup.
- */
-//require get_template_directory() . '/lib/theme_panel.php';
+if ( file_exists( STYLESHEETPATH . '/lib/theme-options/theme-options.php' ) ) {
+  require_once( STYLESHEETPATH . '/lib/theme-options/theme-options.php' );
+}
 
-
-/* Options framework */
-
-//require get_template_directory() . '/lib/options.php';
+if ( file_exists( STYLESHEETPATH . '/inc/modules/disable-embeds.php' ) ) {
+  require_once( STYLESHEETPATH . '/inc/modules/disable-embeds.php' );
+}
 
 
-/**
- * http://themeshaper.com/2010/06/03/sample-theme-options/
- */
-//require_once get_template_directory() . '/lib/theme-options/theme-options.php';
+if ( file_exists( STYLESHEETPATH . '/inc/modules/disable-emojis.php' ) ) {
+  require_once( STYLESHEETPATH . '/inc/modules/disable-emojis.php' );
+}
 
-/**
- * Options panel https://www.damianschwyrz.de/wordpress-theme-simple-option-seite-erstellen-und-integrieren/
- */
-//require get_template_directory() . '/lib/functions-theme-options.php';
-//require get_template_directory() . '/lib/theme-options.php';
+
+
+
+/* Modules
+ -------------------------- */
+
+require_once get_template_directory() . '/inc/modules/contact.php';
+
 
 /**
  * Custom functions that act independently of the theme templates.
@@ -81,11 +82,8 @@ require get_template_directory() . '/lib/inc/customizer.php';
 /****************************************
 Require Plugins
 *****************************************/
-
 require get_template_directory() . '/lib/class-tgm-plugin-activation.php';
 require get_template_directory() . '/lib/theme-require-plugins.php';
-
-// add_action( 'tgmpa_register', 'mb_register_required_plugins' );
 
 /* Modules
  -------------------------- */
@@ -110,34 +108,3 @@ add_filter( 'wpseo_metabox_prio', 'mb_filter_yoast_seo_metabox' );
 function mb_filter_yoast_seo_metabox() {
 	return 'low';
 }
-
-
-/** Automatically Updating Copyright Years */
-
-/*if ( ! function_exists( 'get_copyright_years' ) ) {
-  function get_copyright_years( $earliest_id = null ) {
-    $earliest_args = array(
-      'post_type'   => array( 'any' ),
-      'numberposts' => 1,
-      'orderby'     => 'date',
-      'order'       => 'ASC'
-    );
-    $get_post      = $earliest_id
-                   ? get_post( $earliest_id )
-                   : null;
-    if ( ! $get_post ) {
-      $get_post = array_shift( get_posts( $earliest_args ) );
-    }
-    $earliest_date = date( 'Y', strtotime( $get_post->post_date ) );
-    $current_date  = date( 'Y' );
-    return $earliest_date == $current_date
-           ? $current_date
-           : $earliest_date . '&ndash;' . $current_date;
-  }
-}
-
-if ( ! function_exists( 'copyright_years' ) ) {
-  function copyright_years( $earliest_id = null ) {
-    echo get_copyright_years( $earliest_id );
-  }
-}*/

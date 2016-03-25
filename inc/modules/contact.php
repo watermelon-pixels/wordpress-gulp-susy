@@ -27,7 +27,7 @@ class wputh__contact {
 
     function form_scripts() {
         wp_enqueue_script('jquery-form');
-        wp_enqueue_script('wputh-contact-form', get_template_directory_uri() . '/js/functions/contact-form.js', array(
+        wp_enqueue_script('wputh-contact-form', get_template_directory_uri() . '/assets/src/js/source/contact-form.js', array(
             'jquery'
         ) , '1.0', true);
 
@@ -79,10 +79,25 @@ class wputh__contact {
                 'type' => 'email',
                 'required' => 1
             ) ,
+            'contact_choice' => array(
+                'label' => __('Choise', 'wputh') ,
+                'type' => 'select',
+                'required' => 1
+            ) ,
+            'contact_subject' => array(
+                'label' => __('Subject', 'wputh') ,
+                'type' => 'text', 
+                'required' => 0
+            ) ,
             'contact_message' => array(
                 'label' => __('Message', 'wputh') ,
                 'type' => 'textarea',
                 'required' => 1
+            ) ,
+            'contact_file' => array(
+                'label' => __('File', 'wputh') ,
+                'type' => 'file',
+                'required' => 0
             ) ,
         ));
 
@@ -114,24 +129,24 @@ class wputh__contact {
     function page_content($hide_wrapper = false) {
 
         // Display contact form
-        $this->content_contact.= '<form class="wputh__contact__form" action="" aria-live="assertive" method="post" ' . ($this->has_upload ? 'enctype="multipart/form-data' : '') . '"><fieldset class="' . $this->contact__settings['ul_class'] . '">';
+        $this->content_contact.= '<form class="wputh__contact__form" action="" aria-live="assertive" method="post" ' . ($this->has_upload ? 'enctype="multipart/form-data' : '') . '"><div class="' . $this->contact__settings['ul_class'] . '">';
         foreach ($this->contact_fields as $field) {
             $this->content_contact.= $this->field_content($field);
         }
 
         /* Quick honeypot */
-        $this->content_contact.= '<li class="screen-reader-text">';
+        $this->content_contact.= '<pinterest class="screen-reader-text">';
         $this->content_contact.= '<label>If you are human, leave this empty</label>';
         $this->content_contact.= '<input tabindex="-1" name="hu-man-te-st" type="text"/>';
-        $this->content_contact.= '</div>';
+        $this->content_contact.= '</pinterest>';
 
-        $this->content_contact.= '<div class="' . $this->contact__settings['li_submit_class'] . '">
+        $this->content_contact.= '<pinterest class="' . $this->contact__settings['li_submit_class'] . '">
         <input type="hidden" name="control_stripslashes" value="&quot;" />
         <input type="hidden" name="wputh_contact_send" value="1" />
         <input type="hidden" name="action" value="wputh__contact" />
         <button class="' . $this->contact__settings['submit_class'] . '" type="submit">' . $this->contact__settings['submit_label'] . '</button>
-        </div>';
-        $this->content_contact.= '</fieldset></form>';
+        </pinterest>';
+        $this->content_contact.= '</div></form>';
         if ($hide_wrapper !== true) {
             echo '<div class="wputh-contact-form-wrapper">';
         }
@@ -162,7 +177,7 @@ class wputh__contact {
                 $content.= '</select>';
             break;
             case 'file':
-                $content.= '<input type="file" accept="' . implode(',', $this->contact__settings['file_types']) . '" ' . $field_id_name . ' ' . $field_val . ' />';
+                $content.= '<input class="fake-upload" type="file" accept="' . implode(',', $this->contact__settings['file_types']) . '" ' . $field_id_name . ' ' . $field_val . ' />';
             break;
             case 'text':
             case 'url':
@@ -174,7 +189,7 @@ class wputh__contact {
             break;
         }
 
-        return $field['html_before'] . '<div class="' . $this->contact__settings['box_class'] . ' ' . $field['box_class'] . '">' . $content . '</div>' . $field['html_after'];
+        return $field['html_before'] . '<p class="' . $this->contact__settings['box_class'] . ' ' . $field['box_class'] . '">' . $content . '</p>' . $field['html_after'];
     }
 
     function post_contact() {

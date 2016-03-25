@@ -2,7 +2,7 @@
 /**
  * The Template for displaying all single posts.
  *
- * @package _waterpix
+ * @package _gulpsy
  */
 
 get_header(); ?>
@@ -14,7 +14,7 @@ get_header(); ?>
 
 			<?php get_template_part( 'parts/content', 'single' ); ?>
 
-			<?php _waterpix_post_nav(); ?>
+			<?php _gulpsy_post_nav(); ?>
 
 			<?php
 				// If comments are open or we have at least one comment, load up the comment template

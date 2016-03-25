@@ -1,4 +1,4 @@
-// Document Javascript Tanguy Groupe Web App
+// Gulpsy Javascript Document
 
 // Remplacer les clicks click(function() par on('tap',function()
 'use strict';
@@ -18,29 +18,6 @@ jQuery(document).ready(function($) {
 	}); 
 
 	//Shrink header bar
-/*	$(function(){
-	 var shrinkHeader = 100;
-	  $(window).scroll(function() {
-	    var scroll = getCurrentScroll();
-	      if ( scroll >= shrinkHeader ) {
-	           $('.site-header').addClass('shrink');
-	        }
-	        else {
-	            $('.site-header').removeClass('shrink');
-	        }
-	  });
-	function getCurrentScroll() {
-	    return window.pageYOffset;
-	    }
-	});
-*/
-
-	/*!
-	 * prettySticky - v1 - 2014-10-26
-	 * https://github.com/moyamiller/prettySticky
-	 * Copyright (c) 2014 Moya Miller
-	 */
-
 	$(function() {
 	    $(window).scroll(function() {
 	        var scroll = $(window).scrollTop() + 90;
@@ -88,20 +65,37 @@ jQuery(document).ready(function($) {
 
 	//SHOW/HIDE FOOTER
 	$('#slide-toggle').click(function(){	
-		if ($(".up-footer").is(":hidden")) {
+		if ($('.up-footer').is(':hidden')) {
 				$(this).css('background-position','0 0');
-				$(".up-footer").slideDown("slow", function() {
-				    $( this )
-					.filter( ".middle" )
-					.focus();
-				 });
+				$('.up-footer').slideDown('slow', function() {
+				    $(this)
+					    .addClass('open')
+						.filter( ".middle" )
+						.focus();
+					$('.icon-arrow-up')
+						.removeClass('icon-arrow-up')
+						.addClass('icon-arrow-down');
+				});
 			} else {
 				$(this).css('background-position','0 0');
 				//alert("Cliquer pour continuer");
-				$(".up-footer").slideUp("slow");
+				$(".up-footer").slideUp('slow', function() {
+					$('.icon-arrow-down')
+						.css({transition: 'all 0.3s ease-in-out 0.2s'})
+						.removeClass('icon-arrow-down')
+						.addClass('icon-arrow-up');
+				});
 			}
 		return false;			   
-	});	
+	});
+
+
+	//File Upload 
+    jQuery('input.fakae-upload').FakeUpload({
+        defaultTxt : 'Parcourir ...',
+        hasFakeButton : 1,
+        hasFakeButtonTxt : 'Choisir un fichier',
+    });
 
 });
 /* globals jQuery,ajaxurl */
@@ -214,6 +208,123 @@ jQuery(document).ready(function() {
 	} );
 } )( jQuery );*/
 
+/*
+ * Plugin Name: Fake Upload
+ * Version: 1.2
+ * Plugin URL: https://github.com/Darklg/JavaScriptUtilities
+ * JavaScriptUtilities Fake Upload may be freely distributed under the MIT license.
+ */
+
+/* ----------------------------------------------------------
+   Fake Upload
+---------------------------------------------------------- */
+
+/*
+jQuery('input.fake-upload').FakeUpload({
+    defaultTxt : 'Browse ...'
+});
+*/
+
+if (!jQuery.fn.FakeUpload) {
+    (function($) {
+        'use strict';
+        var FakeUpload = {
+            defaultSettings: {
+                defaultClass: 'fake-upload-default-txt',
+                defaultTxt: 'Browse ...',
+                hasFakeButton: 0,
+                hasFakeButtonTxt: 'Choose a file',
+            },
+            settings: {},
+            init: function(el, settings) {
+                this.el = el;
+                this.getSettings(settings);
+                if (el.hasClass('has-fakeupload') || el.attr('type') !=='file') {
+                    return;
+                }
+                this.el.addClass('has-fakeupload');
+                this.setWrapper();
+                this.setEvents();
+            },
+            // Obtaining user settings
+            getSettings: function(settings) {
+                if (typeof settings !=='object') {
+                    settings = {};
+                }
+                this.settings = $.extend(true, {}, this.defaultSettings, settings);
+            },
+            // Set wrappers elements
+            setWrapper: function() {
+                var self = this,
+                    settings = self.settings;
+                this.wrapper = $('<div class="fakeupload-wrapper"></div>');
+                this.cover = $('<div class="fakeupload-cover"></div>');
+                this.setDefaultStatus();
+                this.el.attr('size', 100);
+                this.el.wrap(this.wrapper);
+                this.wrapper = this.el.parent();
+                this.wrapper.append(this.cover);
+
+                /* Fake button */
+                if (settings.hasFakeButton) {
+                    this.fakeButton = $('<div class="fakeupload-button button"></div>');
+                    this.fakeButton.html(settings.hasFakeButtonTxt);
+                    this.wrapper.append(this.fakeButton);
+                    this.wrapper.addClass('has-fake-button');
+                }
+            },
+            setEvents: function() {
+                var self = this,
+                    settings = self.settings;
+                // Change the shown file name
+                this.el.on('change', function() {
+                    var newValue = $(this).val().replace('C:\\fakepath\\', '');
+                    if (newValue === '') {
+                        self.setDefaultStatus();
+                    }
+                    else {
+                        self.cover.html(newValue).removeClass(settings.defaultClass);
+                    }
+                });
+                // Move the input element for a good behavior
+                this.wrapper.on('mousemove', function(e) {
+                    var right = $(this).width() - Math.round(e.pageX - $(this).offset().left) - 10,
+                        top = Math.round(e.pageY - $(this).offset().top) - 30;
+                    $(this).children('input').css({
+                        'top': top,
+                        'right': right
+                    });
+                });
+                // Reset position on leave
+                this.wrapper.on('mouseleave', function() {
+                    $(this).children('input').css({
+                        'top': 0,
+                        'right': 0
+                    });
+                });
+            },
+            setDefaultStatus: function() {
+                var self = this,
+                    settings = self.settings;
+                if (!this.cover.hasClass(settings.defaultClass)) {
+                    this.cover.addClass(settings.defaultClass);
+                    this.cover.html(settings.defaultTxt);
+                }
+            }
+        };
+        $.fn.FakeUpload = function(params) {
+            this.each(function() {
+                var $this = $(this),
+                    dataPlugin = 'plugin_FakeUpload'.toLowerCase();
+                if (!$this.hasClass(dataPlugin)) {
+                    $.extend(true, {}, FakeUpload).init($this, params);
+                    $this.addClass(dataPlugin);
+                }
+            });
+            return this;
+        };
+    })(jQuery);
+}
 /**
  * navigation.js
  *

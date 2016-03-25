@@ -2,7 +2,7 @@
 /**
  * Helper functions for use in other areas of the theme
  *
- * @package _waterpix
+ * @package _gulpsy
  */
 
 /**

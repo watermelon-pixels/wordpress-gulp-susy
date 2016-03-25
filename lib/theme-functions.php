@@ -1,8 +1,8 @@
 <?php
 /**
- * _waterpix theme functions definted in /lib/init.php
+ * _gulpsy theme functions definted in /lib/init.php
  *
- * @package _waterpix
+ * @package _gulpsy
  */
 
 
@@ -12,7 +12,7 @@
 function mb_widgets_init() {
 	// Main Sidebar
 	register_sidebar( array(
-		'name'          => __( 'Sidebar', '_waterpix' ),
+		'name'          => __( 'Sidebar', '_gulpsy' ),
 		'id'            => 'sidebar-1',
 		'description'   => '',
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
@@ -93,12 +93,12 @@ function mb_imagelink_setup() {
  * Enqueue scripts
  */
 function mb_scripts() {
-	//wp_enqueue_style( '_waterpix-style', get_stylesheet_uri() );
+	//wp_enqueue_style( '_gulpsy-style', get_stylesheet_uri() );
 	wp_enqueue_script( 'modernizr-cdn', 'https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js', array(), '20162302',false );
 	wp_enqueue_style( 'main-style', get_template_directory_uri() .'/assets/dist/css/style.css', array(), '20160102');
 	wp_enqueue_style( 'glyphe', get_template_directory_uri() .'/assets/dist/css/icons.css', array(), '20160102');
-	//wp_enqueue_script( '_waterpix-navigation', get_template_directory_uri() . '/assets/js/vendor/navigation.js', array(), '20120206', true );
-	//wp_enqueue_script( '_waterpix-skip-link-focus-fix', get_template_directory_uri() . '/assets/js/vendor/skip-link-focus-fix.js', array(), '20130115', true );
+	//wp_enqueue_script( '_gulpsy-navigation', get_template_directory_uri() . '/assets/js/vendor/navigation.js', array(), '20120206', true );
+	//wp_enqueue_script( '_gulpsy-skip-link-focus-fix', get_template_directory_uri() . '/assets/js/vendor/skip-link-focus-fix.js', array(), '20130115', true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );

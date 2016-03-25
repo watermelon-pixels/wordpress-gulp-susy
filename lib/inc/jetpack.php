@@ -3,17 +3,17 @@
  * Jetpack Compatibility File
  * See: http://jetpack.me/
  *
- * @package _waterpix
+ * @package _gulpsy
  */
 
 /**
  * Add theme support for Infinite Scroll.
  * See: http://jetpack.me/support/infinite-scroll/
  */
-function _waterpix_jetpack_setup() {
+function _gulpsy_jetpack_setup() {
 	add_theme_support( 'infinite-scroll', array(
 		'container' => 'main',
 		'footer'    => 'page',
 	) );
 }
-add_action( 'after_setup_theme', '_waterpix_jetpack_setup' );
+add_action( 'after_setup_theme', '_gulpsy_jetpack_setup' );

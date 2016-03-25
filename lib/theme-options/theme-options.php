@@ -1,220 +1,169 @@
 <?php
 
-add_action( 'admin_init', 'theme_options_init' );
-add_action( 'admin_menu', 'theme_options_add_page' );
+/* ----------------------------------------------------------
+Declare vars
+------------------------------------------------------------- */
+$themename = "Gulpsy";
 
-/**
- * Init plugin options to white list our options
- */
-function theme_options_init(){
-	register_setting( 'sample_options', 'sample_theme_options', 'theme_options_validate' );
+function theme_settings_page()
+{
+    ?>
+    <div class="wrap">
+        <h1>Panneau du thème</h1>
+        <form method="post" action="options.php">
+            <?php
+                settings_fields("section");
+                do_settings_sections("theme-options");
+                do_settings_sections("social-options");
+                do_settings_sections("tracking-options");
+                submit_button();
+            ?>          
+        </form>
+    </div>
+    <?php
 }
 
-/**
- * Load up the menu page
- */
-function theme_options_add_page() {
-	add_theme_page( __( 'Theme Options', 'sampletheme' ), __( 'Theme Options', 'sampletheme' ), 'edit_theme_options', 'theme_options', 'theme_options_do_page' );
+function add_theme_menu_item()
+{
+    add_menu_page("Theme-Optionen", "Options de Gulpsy", "manage_options", "theme-panel", "theme_settings_page", null, 81);
+}
+add_action("admin_menu", "add_theme_menu_item");
+
+function display_articleteaser()
+{
+    ?>
+    <textarea id="article_teaser" style="width:100%;height:100px" name="article_teaser"><?php echo get_option('article_teaser'); ?></textarea>
+    <?php
 }
 
-/**
- * Create arrays for our select and radio options
- */
-$select_options = array(
-	'0' => array(
-		'value' =>	'0',
-		'label' => __( 'Zero', 'sampletheme' )
-	),
-	'1' => array(
-		'value' =>	'1',
-		'label' => __( 'One', 'sampletheme' )
-	),
-	'2' => array(
-		'value' => '2',
-		'label' => __( 'Two', 'sampletheme' )
-	),
-	'3' => array(
-		'value' => '3',
-		'label' => __( 'Three', 'sampletheme' )
-	),
-	'4' => array(
-		'value' => '4',
-		'label' => __( 'Four', 'sampletheme' )
-	),
-	'5' => array(
-		'value' => '3',
-		'label' => __( 'Five', 'sampletheme' )
-	)
-);
-
-$radio_options = array(
-	'yes' => array(
-		'value' => 'yes',
-		'label' => __( 'Yes', 'sampletheme' )
-	),
-	'no' => array(
-		'value' => 'no',
-		'label' => __( 'No', 'sampletheme' )
-	),
-	'maybe' => array(
-		'value' => 'maybe',
-		'label' => __( 'Maybe', 'sampletheme' )
-	)
-);
-
-/**
- * Create the options page
- */
-function theme_options_do_page() {
-	global $select_options, $radio_options;
-
-	if ( ! isset( $_REQUEST['settings-updated'] ) )
-		$_REQUEST['settings-updated'] = false;
-
-	?>
-	<div class="wrap">
-		<?php screen_icon(); echo "<h2>" . get_current_theme() . __( ' Theme Options', 'sampletheme' ) . "</h2>"; ?>
-
-		<?php if ( false !== $_REQUEST['settings-updated'] ) : ?>
-		<div class="updated fade"><p><strong><?php _e( 'Options saved', 'sampletheme' ); ?></strong></p></div>
-		<?php endif; ?>
-
-		<form method="post" action="options.php">
-			<?php settings_fields( 'sample_options' ); ?>
-			<?php $options = get_option( 'sample_theme_options' ); ?>
-
-			<table class="form-table">
-
-				<?php
-				/**
-				 * A sample checkbox option
-				 */
-				?>
-				<tr valign="top"><th scope="row"><?php _e( 'A checkbox', 'sampletheme' ); ?></th>
-					<td>
-						<input id="sample_theme_options[option1]" name="sample_theme_options[option1]" type="checkbox" value="1" <?php checked( '1', $options['option1'] ); ?> />
-						<label class="description" for="sample_theme_options[option1]"><?php _e( 'Sample checkbox', 'sampletheme' ); ?></label>
-					</td>
-				</tr>
-
-				<?php
-				/**
-				 * A sample text input option
-				 */
-				?>
-				<tr valign="top"><th scope="row"><?php _e( 'Some text', 'sampletheme' ); ?></th>
-					<td>
-						<input id="sample_theme_options[sometext]" class="regular-text" type="text" name="sample_theme_options[sometext]" value="<?php esc_attr_e( $options['sometext'] ); ?>" />
-						<label class="description" for="sample_theme_options[sometext]"><?php _e( 'Sample text input', 'sampletheme' ); ?></label>
-					</td>
-				</tr>
-
-				<?php
-				/**
-				 * A sample select input option
-				 */
-				?>
-				<tr valign="top"><th scope="row"><?php _e( 'Select input', 'sampletheme' ); ?></th>
-					<td>
-						<select name="sample_theme_options[selectinput]">
-							<?php
-								$selected = $options['selectinput'];
-								$p = '';
-								$r = '';
-
-								foreach ( $select_options as $option ) {
-									$label = $option['label'];
-									if ( $selected == $option['value'] ) // Make default first in list
-										$p = "\n\t<option style=\"padding-right: 10px;\" selected='selected' value='" . esc_attr( $option['value'] ) . "'>$label</option>";
-									else
-										$r .= "\n\t<option style=\"padding-right: 10px;\" value='" . esc_attr( $option['value'] ) . "'>$label</option>";
-								}
-								echo $p . $r;
-							?>
-						</select>
-						<label class="description" for="sample_theme_options[selectinput]"><?php _e( 'Sample select input', 'sampletheme' ); ?></label>
-					</td>
-				</tr>
-
-				<?php
-				/**
-				 * A sample of radio buttons
-				 */
-				?>
-				<tr valign="top"><th scope="row"><?php _e( 'Radio buttons', 'sampletheme' ); ?></th>
-					<td>
-						<fieldset><legend class="screen-reader-text"><span><?php _e( 'Radio buttons', 'sampletheme' ); ?></span></legend>
-						<?php
-							if ( ! isset( $checked ) )
-								$checked = '';
-							foreach ( $radio_options as $option ) {
-								$radio_setting = $options['radioinput'];
-
-								if ( '' != $radio_setting ) {
-									if ( $options['radioinput'] == $option['value'] ) {
-										$checked = "checked=\"checked\"";
-									} else {
-										$checked = '';
-									}
-								}
-								?>
-								<label class="description"><input type="radio" name="sample_theme_options[radioinput]" value="<?php esc_attr_e( $option['value'] ); ?>" <?php echo $checked; ?> /> <?php echo $option['label']; ?></label><br />
-								<?php
-							}
-						?>
-						</fieldset>
-					</td>
-				</tr>
-
-				<?php
-				/**
-				 * A sample textarea option
-				 */
-				?>
-				<tr valign="top"><th scope="row"><?php _e( 'A textbox', 'sampletheme' ); ?></th>
-					<td>
-						<textarea id="sample_theme_options[sometextarea]" class="large-text" cols="50" rows="10" name="sample_theme_options[sometextarea]"><?php echo esc_textarea( $options['sometextarea'] ); ?></textarea>
-						<label class="description" for="sample_theme_options[sometextarea]"><?php _e( 'Sample text box', 'sampletheme' ); ?></label>
-					</td>
-				</tr>
-			</table>
-
-			<p class="submit">
-				<input type="submit" class="button-primary" value="<?php _e( 'Save Options', 'sampletheme' ); ?>" />
-			</p>
-		</form>
-	</div>
-	<?php
+function display_facebook()
+{
+    ?>
+    <input type="text" id="facebook_url" style="width:100%" name="facebook_url" value="<?php echo get_option('facebook_url'); ?>"/>
+    <?php
 }
 
-/**
- * Sanitize and validate input. Accepts an array, return a sanitized array.
- */
-function theme_options_validate( $input ) {
-	global $select_options, $radio_options;
-
-	// Our checkbox value is either 0 or 1
-	if ( ! isset( $input['option1'] ) )
-		$input['option1'] = null;
-	$input['option1'] = ( $input['option1'] == 1 ? 1 : 0 );
-
-	// Say our text option must be safe text with no HTML tags
-	$input['sometext'] = wp_filter_nohtml_kses( $input['sometext'] );
-
-	// Our select option must actually be in our array of select options
-	if ( ! array_key_exists( $input['selectinput'], $select_options ) )
-		$input['selectinput'] = null;
-
-	// Our radio option must actually be in our array of radio options
-	if ( ! isset( $input['radioinput'] ) )
-		$input['radioinput'] = null;
-	if ( ! array_key_exists( $input['radioinput'], $radio_options ) )
-		$input['radioinput'] = null;
-
-	// Say our textarea option must be safe text with the allowed tags for posts
-	$input['sometextarea'] = wp_filter_post_kses( $input['sometextarea'] );
-
-	return $input;
+function display_twitter()
+{
+    ?>
+    <input type="text" id="twitter_url" style="width:100%" name="twitter_url" value="<?php echo get_option('twitter_url'); ?>"/>
+    <?php
 }
 
-// adapted from http://planetozh.com/blog/2009/05/handling-plugins-options-in-wordpress-28-with-register_setting/
+function display_youtube()
+{
+    ?>
+    <input type="text" id="youtube_url" style="width:100%" name="youtube_url" value="<?php echo get_option('youtube_url'); ?>"/>
+    <?php
+}
+
+
+function display_google_plus()
+{
+    ?>
+    <input type="text" id="google_url" style="width:100%" name="google_url" value="<?php echo get_option('google_url'); ?>"/>
+    <?php
+}
+
+
+function display_github()
+{
+    ?>
+    <input type="text" id="github_url" style="width:100%" name="github_url" value="<?php echo get_option('github_url'); ?>"/>
+    <?php
+}
+
+function display_linkedin()
+{
+    ?>
+    <input type="text" id="linkedin_url" style="width:100%" name="linkedin_url" value="<?php echo get_option('linkedin_url'); ?>"/>
+    <?php
+}
+
+function display_pinterest()
+{
+    ?>
+    <input type="text" id="pinterest_url" style="width:100%" name="pinterest_url" value="<?php echo get_option('pinterest_url'); ?>"/>
+    <?php
+}
+
+function display_jscode_ga()
+{
+    ?>
+    <textarea id="ga_js_code" style="width:100%;height:300px" name="ga_js_code"><?php echo get_option('ga_js_code'); ?></textarea>
+    <?php
+}
+
+
+function display_logo_url()
+{
+    ?>
+    <div class="uploader">
+        <input id="logo_url" name="settings[logo_url]" type="text" />
+        <input id="logo_url_button" class="button" name="logo_url_button" type="text" value="Upload" />
+    </div>
+    <?php
+}
+
+function add_theme_options()
+{
+    add_settings_section("section", "Options de réglage", null, "theme-options");
+    add_settings_field("article_teaser", "A propos", "display_articleteaser", "theme-options", "section");
+    register_setting("section", "article_teaser");
+
+    add_settings_section("section", "Réseaux sociaux", null, "social-options");
+    add_settings_field("facebook_url", "Facebook URL", "display_facebook", "social-options", "section");
+    add_settings_field("twitter_url", "Twitter URL", "display_twitter", "social-options", "section");
+    add_settings_field("youtube_url", "YouTube URL", "display_youtube", "social-options", "section");
+    add_settings_field("google_url", "Google Plus URL", "display_google_plus", "social-options", "section");
+    add_settings_field("github_url", "Github URL", "display_github", "social-options", "section");
+    add_settings_field("pinterest_url", "Pinterest URL", "display_pinterest", "social-options", "section");
+    add_settings_field("linkedin_url", "Linkedin URL", "display_linkedin", "social-options", "section");
+
+    register_setting("section", "facebook_url");
+    register_setting("section", "twitter_url");
+    register_setting("section", "youtube_url");
+    register_setting("section", "google_url");
+    register_setting("section", "github_url");
+    register_setting("section", "pinterest_url");
+    register_setting("section", "linkedin_url");
+
+    add_settings_section("section", "Tracking Code (Google Analytics)", null, "tracking-options");
+    add_settings_field("ga_js_code", "JS Code", "display_jscode_ga", "tracking-options", "section");
+    register_setting("section", "ga_js_code");
+
+    add_settings_section("section", "Options de réglage", null, "theme-options");
+    add_settings_field("logo_url", "Logo", "display_logo_url", "theme-options", "section");
+    register_setting("section", "logo_url");
+
+    echo"
+    <script>
+        jQuery(document).ready(function($){
+            var _custom_media = true,
+            _orig_send_attachment = wp.media.editor.send.attachment;
+
+            $('.stag-metabox-table .button').click(function(e) {
+                var send_attachment_bkp = wp.media.editor.send.attachment;
+                var button = $(this);
+                var id = button.attr('id').replace('_button', '');
+                _custom_media = true;
+                wp.media.editor.send.attachment = function(props, attachment){
+                    if ( _custom_media ) {
+                        $('#'+id).val(attachment.url);
+                    } else {
+                        return _orig_send_attachment.apply( this, [props, attachment] );
+                    };
+                }
+
+                wp.media.editor.open(button);
+                return false;
+            });
+
+            $('.add_media').on('click', function(){
+                _custom_media = false;
+            });
+        });
+    </script>";
+}
+
+add_action("admin_init", "add_theme_options");
